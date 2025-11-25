@@ -34,6 +34,7 @@ int main(int ac,char **av)
 			printf("\n");
 		else
 			fprime((unsigned int)num);
+			printf("\n");
 	}
 	else
 		printf("\n");
