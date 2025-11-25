@@ -8,7 +8,7 @@ int *ft_range(int start,int end)
 
 	i = 0;
 	len = end - start;
-	new = malloc(sizeof(int *) * len);
+	new = malloc(sizeof(int) * len);
 	if (!new)
 		return 0;
 	if (start >= end)
