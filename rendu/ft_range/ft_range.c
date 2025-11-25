@@ -13,9 +13,9 @@ int *ft_range(int start,int end)
 	new = malloc(sizeof(int) * size);
 	if (!new)
 		return 0;
+	int i =0;
 	if (start <= end)
 	{
-		int i = 0;
 		while (start <= end)
 		{
 			new[i] = start;
