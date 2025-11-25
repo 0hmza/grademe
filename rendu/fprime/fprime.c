@@ -19,17 +19,24 @@ void fprime(unsigned int n)
 				n /= prime;
 				if(n > 1)
 					printf("*");
-				prime--;
 			}
-			prime++;
+			else
+				prime++;
 		}
 	}
 }
 int main(int ac,char **av)
 {
-	if (ac == 2 && *av[1])
-		fprime(atoi(av[1]));
-	printf("\n");
+	if (ac == 2)
+	{
+		int num = atoi(av[1]);
+		if (num < 0)
+			printf("\n");
+		else
+			fprime((unsigned int)num);
+	}
+	else
+		printf("\n");
 	return 0;
 }
 
