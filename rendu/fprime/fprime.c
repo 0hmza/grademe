@@ -31,7 +31,10 @@ int main(int ac,char **av)
 	{
 		int num = atoi(av[1]);
 		if (num < 0)
+		{
 			printf("\n");
+			return 0;
+		}
 		else
 			fprime((unsigned int)num);
 			printf("\n");
