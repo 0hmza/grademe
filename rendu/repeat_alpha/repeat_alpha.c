@@ -10,23 +10,23 @@ int main(int ac,char **av)
 		int count = 0;
 		while (av[1][i])
 		{
-		if (av[1][i] >= 'a' && av[1][i] <= 'z') 
+			if (av[1][i] >= 'a' && av[1][i] <= 'z') 
+				{
+					count = av[1][i] - 'a' + 1;
+				}
+			else if(av[1][i] >= 'A' && av[1][i] <= 'Z')
+				{
+					count = av[1][i] - 'A' + 1;
+				}
+			else
+				write(1,&av[1][i] ,1);
 
+			while (count)
 			{
-				count = av[1][i] - 'a' + 1;
+				write (1,&av[1][i],1);
+				count--;
 			}
-		else if(av[1][i] >= 'A' && 
-						av[1][i] <= 'Z')
-			{
-			
-				count = av[1][i] - 'A' + 1;
-			}
-		while (count)
-		{
-			write (1,&av[1][i],1);
-			count--;
-		}
-		i++;
+			i++;
 		}
 		write (1,"\n",1);
 	}
