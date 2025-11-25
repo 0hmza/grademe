@@ -1,23 +1,21 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdli.h>
+
+
 int *ft_range(int start,int end)
 {
-	int i;
 	int *new;
-	int len;
+	int size;
 
-	i = 0;
-	if (start <= end)
-		len = end - start+ 1;
+	if (start > end)
+		size = start - end + 1;
 	else
-		len = start - end + 1;
-
-	new = malloc(sizeof(int) * len);
+		size = end - start + 1;
+	new = malloc(sizeof(int) * size);
 	if (!new)
 		return 0;
 	if (start <= end)
 	{
-		i = 0;
+		int i = 0;
 		while (start <= end)
 		{
 			new[i] = start;
@@ -36,3 +34,4 @@ int *ft_range(int start,int end)
 	}
 	return (new);
 }
+
