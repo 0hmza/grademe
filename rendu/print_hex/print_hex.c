@@ -1,12 +1,12 @@
 #include <unistd.h>
 #include <stdio.h>
-int ft_atoi(char *s)
+int long ft_atoi(char *s)
 {
 	int i = 0;
 	int t = 1;
 	int r = 0;
 
-	while (s[i] >= 9 && s[i] <= 13 || s[i] == ' ')
+	while ((s[i] >= 9 && s[i] <= 13) || s[i] == ' ')
 		i++;
 	if (s[i] == '-' || s[i] == '+')
 	{
@@ -25,12 +25,12 @@ int main(int ac,char **av)
 {
 	if (ac == 2)
 	{
-		char box[16];
+		char box[32];
 		char *hex = "0123456789abcdef";
-		int num = ft_atoi(av[1]);
+		int long  num = ft_atoi(av[1]);
 
 			int i = 0;
-			while (num >= i)
+			while (num > 0)
 			{
 				box[i] = hex[num % 16];
 				num /= 16;
