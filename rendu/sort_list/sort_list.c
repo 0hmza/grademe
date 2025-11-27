@@ -9,10 +9,6 @@ void ft_swap(int *a, int *b)
 	*a = *b;
 	*b = temp;
 }
-int ascending(int a,int b)
-{
-	return (a <= b);
-}
 t_list	*sort_list(t_list *lst, int (*cmp)(int ,int))
 {
 	t_list	*begin;
