@@ -47,7 +47,7 @@ int main(int ac,char **av)
 	if (ac == 2)
 	{
 		int num = ft_atoi(av[1]);
-		int i =0;
+		int i =1;
 		int total = 0;
 		while (i < 10)
 		{
