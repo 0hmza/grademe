@@ -5,7 +5,7 @@ void ft_swap(int *a,int *b)
 	int temp;
 	temp = *a;
 	*a = *b;
-	*b = *temp;
+	*b = temp;
 }
 t_list	*sort_list(t_list* lst, int (*cmp)(int,int))
 {
