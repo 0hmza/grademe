@@ -37,7 +37,7 @@ char *ft_strdup(char *s)
 	if (!s)
 		return (NULL);
 	int len = ft_strlen(s);
-	new = malloc(sizeof(char) * len + 1);
+	new = malloc(sizeof(char) * (len + 1));
 	if (!new)
 		return (NULL);
 	while (s[i])
@@ -129,7 +129,7 @@ char *free_s(char *s)
 char *take(int fd,char *s)
 {
 	int rp = 1;
-	char *buffer = malloc(BUFFER_SIZE + 1);
+	char *buffer = malloc((char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	while (!ft_strchr(s,'\n') && rp > 0)
@@ -142,15 +142,20 @@ char *take(int fd,char *s)
 		}
 		buffer[rp] = '\0';
 		s = ft_strjoin(s,buffer);
+		if (!s)
+		{
+			free(buffer);
+			return (NULL);
+		}
 	}
 	free(buffer);
 	return (s);
 }
 char *get_next_line(int fd)
 {
-	static char *save;
+	static char *save = NULL;
 	char *line;
-	if (fd < 0 || fd == 1 || fd == 2 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 
 	save = take(fd,save);
