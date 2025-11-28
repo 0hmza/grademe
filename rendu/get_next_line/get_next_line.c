@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <fcntl.h>
+#include <unistd.h>
+#ifndef BUFFER_SIZE
 #define BUFFER_SIZE 42
+#endif
 
 
 char	*ft_strchr(const char *str, int c)
@@ -22,7 +25,7 @@ size_t	ft_strlen(char *s)
 {
 	size_t i = 0;
 	if (!s)
-		return (NULL);
+		return (0);
 	while (s[i])
 		i++;
 	return i;
@@ -102,7 +105,7 @@ char *free_s(char *s)
 	int len = 0;
 	while (s[len] && s[len] != '\n')
 		len++;
-	if (!s[len] || s[len] == '\n' && s[len + 1] == '\0')
+	if (!s[len] || (s[len] == '\n' && s[len + 1] == '\0'))
 	{
 		free(s);
 		return (NULL);
