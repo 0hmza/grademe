@@ -129,7 +129,7 @@ char *free_s(char *s)
 char *take(int fd,char *s)
 {
 	int rp = 1;
-	char *buffer = malloc((char) * (BUFFER_SIZE + 1));
+	char *buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
 	while (!ft_strchr(s,'\n') && rp > 0)
