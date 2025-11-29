@@ -71,7 +71,7 @@ char *ft_strjoin(char *s1,char *s2)
 		i++;
 		j++;
 	}
-	new[j] = '\0';
+	new[i] = '\0';
 	free(s1);
 	return (new);
 }
@@ -101,7 +101,7 @@ char *free_s(char *s)
 	int i = 0;
 	while (s[i] && s[i] != '\n')
 		i++;
-	while (!s[i] || s[i] == '\n' && s[i + 1] == '\0')
+	while (!s[i] || (s[i] == '\n' && s[i + 1] == '\0'))
 	{
 		free(s);
 		return (NULL);
@@ -153,7 +153,7 @@ char *get_next_line(int fd)
 }
 int main()
 {
-	int fd = open("jg.txt", O_RDONLY);
+	int fd = open("test", O_RDONLY);
 	char *line = get_next_line(fd);
 	while (line)
 	{
