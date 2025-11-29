@@ -151,6 +151,7 @@ char *get_next_line(int fd)
 	save = free_s(save);
 	return (line);
 }
+/*
 int main()
 {
 	int fd = open("test", O_RDONLY);
@@ -166,4 +167,4 @@ int main()
 }
 
 
-
+*/
