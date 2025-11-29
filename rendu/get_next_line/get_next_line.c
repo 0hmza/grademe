@@ -1,45 +1,42 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
-#include <fcntl.h>
 #include <unistd.h>
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stddef.h>
+#ifndef BUFFER_SIZE 
+# define BUFFER_SIZE 42
 #endif
 
-
-char	*ft_strchr(const char *str, int c)
-{
-	int i = 0;
-	if (!str)
-		return (NULL);
-	while(str[i] != (char)c)
-	{
-		if (str[i] == '\0')
-			return (NULL);
-		i++;
-	}
-	return ((char *)&str[i]);
-}
-size_t	ft_strlen(char *s)
+size_t ft_strlen(char *s)
 {
 	size_t i = 0;
 	if (!s)
 		return (0);
 	while (s[i])
 		i++;
-	return i;
+	return (i);
+}
+char *ft_strchr(const char *s,int c)
+{
+	if (!s)
+		return (NULL);
+	int i = 0;
+	while (s[i] != (char)c)
+	{
+		if (s[i] == '\0')
+			return (NULL);
+		i++;
+	}
+	return ((char *)&s[i]);
 }
 char *ft_strdup(char *s)
 {
-	char *new;
-	int i = 0;
 	if (!s)
 		return (NULL);
-	int len = ft_strlen(s);
-	new = malloc(sizeof(char) * (len + 1));
+	char *new = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!new)
 		return (NULL);
+	int i = 0;
 	while (s[i])
 	{
 		new[i] = s[i];
@@ -51,15 +48,14 @@ char *ft_strdup(char *s)
 char *ft_strjoin(char *s1,char *s2)
 {
 	if (!s1 && !s2)
-		 return (NULL);
+		return (NULL);
 	if (!s1)
 		return (ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
-	char *new;
 	int len1 = ft_strlen(s1);
 	int len2 = ft_strlen(s2);
-	new = malloc(sizeof(char) * (len1 + len2 + 1));
+	char *new = malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!new)
 		return (NULL);
 	int i = 0;
@@ -75,7 +71,7 @@ char *ft_strjoin(char *s1,char *s2)
 		i++;
 		j++;
 	}
-	new[i] = '\0';
+	new[j] = '\0';
 	free(s1);
 	return (new);
 }
@@ -83,48 +79,44 @@ char *get_line(char *s)
 {
 	if (!s)
 		return (NULL);
-	int len = 0;
-	while (s[len] && s[len] != '\n')
-		len++;
-	char *box = malloc((len + 2) * sizeof(char));
-	if (!box)
-		return (NULL);
 	int i = 0;
 	while (s[i] && s[i] != '\n')
+		i++;
+	char *new = malloc(sizeof(char) * (i + 2));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (s[i] && s[i] != '\n')
 	{
-		box[i] = s[i];
+		new[i] = s[i];
 		i++;
 	}
 	if (s[i] == '\n')
-		box[i++] = '\n';
-	box[i] = '\0';
-	return (box);
+		new[i++] = '\n';
+	new[i] = '\0';
+	return (new);
 }
 char *free_s(char *s)
 {
-	int len = 0;
-	while (s[len] && s[len] != '\n')
-		len++;
-	if (!s[len] || (s[len] == '\n' && s[len + 1] == '\0'))
+	int i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	while (!s[i] || s[i] == '\n' && s[i + 1] == '\0')
 	{
 		free(s);
 		return (NULL);
 	}
-	if (s[len] == '\n')
-		len++;
-	char *new = malloc(ft_strlen(s) - len + 1);
-	if (!new)
-		return (NULL);
-	int i = 0;
-	while (s[len] && s[len] != '\n')
-	{
-		new[i] = s[len];
+	if (s[i] == '\n')
 		i++;
-		len++;
-	}
-	new[i] = '\0';
+	char *box = malloc(sizeof(char) * (ft_strlen(s) - i + 1));
+	if (!box)
+		return (NULL);
+	int j = 0;
+	while (s[i])
+		box[j++] = s[i++];
+	box[j] = '\0';
 	free(s);
-	return (new);
+	return (box);
 }
 char *take(int fd,char *s)
 {
@@ -132,7 +124,7 @@ char *take(int fd,char *s)
 	char *buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(s,'\n') && rp > 0)
+	while (rp > 0 && !ft_strchr(s, '\n'))
 	{
 		rp = read(fd, buffer,BUFFER_SIZE);
 		if (rp <= 0)
@@ -142,22 +134,16 @@ char *take(int fd,char *s)
 		}
 		buffer[rp] = '\0';
 		s = ft_strjoin(s,buffer);
-		if (!s)
-		{
-			free(buffer);
-			return (NULL);
-		}
 	}
 	free(buffer);
 	return (s);
 }
 char *get_next_line(int fd)
 {
-	static char *save = NULL;
+	static char *save;
 	char *line;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-
 	save = take(fd,save);
 	if (!save)
 		return (NULL);
@@ -165,13 +151,10 @@ char *get_next_line(int fd)
 	save = free_s(save);
 	return (line);
 }
-/*
 int main()
 {
-	int fd;
-	fd = open("file.txt", O_RDONLY);
-	char *line;
-	line = get_next_line(fd);
+	int fd = open("jg.txt", O_RDONLY);
+	char *line = get_next_line(fd);
 	while (line)
 	{
 		printf("%s",line);
@@ -181,4 +164,6 @@ int main()
 	close(fd);
 	return (0);
 }
-*/
+
+
+
