@@ -24,7 +24,7 @@ int ft_putstr(char *s)
 }
 int cal_len(int nb)
 {
-	int len = 0;
+	long len = 0;
 	
 	if (nb <= 0)
 		len = 1;
@@ -64,7 +64,7 @@ int ft_putnbr(int nb)
 }
 int cal_len1(unsigned long nb)
 {
-	int len = 0;
+	long len = 0;
 	if (nb == 0)
 		len = 1;
 	while (nb > 0)
