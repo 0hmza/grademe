@@ -1,16 +1,18 @@
 #include <unistd.h>
 
-
 void display(char *s)
 {
 	int i = 0;
 	while (s[i])
 	{
-		if (s[i] == '_' && (s[i + 1] >= 'a' && s[i + 1] <= 'z'))
+		if (s[i] == '_')
 		{
 			i++;
-			s[i] = s[i] - 32;
-			write(1,&s[i],1);
+			if (s[i] >= 'a' && s[i] <= 'z')
+			{
+				s[i] -= 32;
+				write(1,&s[i],1);
+			}
 		}
 		else
 			write(1,&s[i],1);
@@ -27,3 +29,4 @@ int main(int ac,char **av)
 	else
 		write(1,"\n",1);
 }
+
