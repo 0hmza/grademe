@@ -38,7 +38,7 @@ int cal_len(int nb)
 int ft_putnbr(int nb)
 {
 	long n;
-	char box[10];
+	char box[12];
 	
 	n = nb;
 	if (n == 0)
@@ -64,7 +64,7 @@ int ft_putnbr(int nb)
 }
 int cal_len1(unsigned long nb)
 {
-	int len;
+	int len = 0;
 	if (nb == 0)
 		len = 1;
 	while (nb > 0)
@@ -75,7 +75,7 @@ int cal_len1(unsigned long nb)
 	return (len);
 }
 
-int put_hex(unsigned long nb,char *s)
+int put_hex(unsigned int nb,char *s)
 {
 	int i = 0;
 	char box[32];
@@ -106,7 +106,7 @@ int display(const char *s, va_list *arg)
 	else if (*s == 'i' || *s == 'd')
 		i = ft_putnbr(va_arg(*arg, int));
 	else if (*s == 'x')
-		i = put_hex(va_arg(*arg ,unsigned long),"0123456789abcdef");
+		i = put_hex(va_arg(*arg ,unsigned int),"0123456789abcdef");
 	return (i);
 }
 int ft_printf(const char *s, ...)
