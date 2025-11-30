@@ -43,12 +43,12 @@ int ft_putnbr(int nb)
 	n = nb;
 	if (n == 0)
 	{
-		write(1,"0",1);
+		ft_putchar('0');
 		return (1);
 	}
 	if (n < 0)
 	{
-		write(1 ,"-",1);
+		ft_putchar('-');
 		n = n * (-1);
 	}
 	int i = 0;
@@ -79,7 +79,7 @@ int put_hex(unsigned int nb,char *s)
 {
 	int i = 0;
 	char box[32];
-
+	int len = cal_len1(nb);
 	if (nb == 0)
 	{
 		write(1,"0",1);
@@ -93,7 +93,7 @@ int put_hex(unsigned int nb,char *s)
 	}
 	while (i--)
 		write(1,&box[i],1);
-	return (cal_len1(nb));
+	return (len);
 }
 
 int display(const char *s, va_list *arg)
@@ -137,7 +137,7 @@ int ft_printf(const char *s, ...)
 /*
 int main()
 {
-	 ft_printf("%d\n",ft_printf("%% |%s| |%d| |%x|  |%c|\n","hamza",42,42,'r'));
-	   printf("%d\n",printf("%% |%s| |%d| |%x|  |%c|","hamza",42,42,'r'));
+	 ft_printf("%d\n",ft_printf("%% |%s| |%d| |%x|  |%c|\n","hamza",-42,42,'r'));
+	   printf("%d\n",printf("%% |%s| |%d| |%x|  |%c|","hamza",-42,42,'r'));
 }
 */
