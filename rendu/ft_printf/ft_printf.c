@@ -85,11 +85,6 @@ int put_hex(unsigned long nb,char *s)
 		write(1,"0",1);
 		return 1;
 	}
-	if (nb < 0)
-	{
-		write(1,"-",1);
-		nb = nb * (-1);
-	}
 	while (nb > 0)
 	{
 		box[i] = s[nb % 16];
