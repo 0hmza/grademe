@@ -24,13 +24,14 @@ int ft_putstr(char *s)
 }
 int cal_len(int nb)
 {
-	long len = 0;
+	int len = 0;
+	long n = nb;
 	
-	if (nb <= 0)
+	if (n <= 0)
 		len = 1;
-	while (nb)
+	while (n)
 	{
-		nb /= 10;
+		n /= 10;
 		len++;
 	}
 	return (len);
@@ -69,7 +70,7 @@ int cal_len1(unsigned long nb)
 		len = 1;
 	while (nb > 0)
 	{
-		nb /= 10;
+		nb /= 16;
 		len++;
 	}
 	return (len);
