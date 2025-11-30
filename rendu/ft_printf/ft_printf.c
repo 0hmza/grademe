@@ -58,7 +58,7 @@ int ft_putnbr(int nb)
 		n /= 10;
 		i++;
 	}
-	while (i--)
+	while (--i >= 0)
 		write(1,&box[i],1);
 	return (cal_len(nb));
 }
@@ -91,7 +91,7 @@ int put_hex(unsigned int nb,char *s)
 		nb /= 16;
 		i++;
 	}
-	while (i--)
+	while (--i >=0)
 		write(1,&box[i],1);
 	return (len);
 }
@@ -126,7 +126,7 @@ int ft_printf(const char *s, ...)
 				j += ft_putchar('%');
 			else if(*s)
 				j += display(s,&arg);
-			s++;
+		    s++;	
 		}
 		else
 			j += ft_putchar(*s++);
@@ -138,6 +138,6 @@ int ft_printf(const char *s, ...)
 int main()
 {
 	 ft_printf("%d\n",ft_printf("%% |%s| |%d| |%x|  |%c|\n","hamza",-42,42,'r'));
-	   printf("%d\n",printf("%% |%s| |%d| |%x|  |%c|","hamza",-42,42,'r'));
+	   printf("%d\n" ,   printf("%% |%s| |%d| |%x|  |%c|\n"  ,"hamza",-42,42,'r'));
 }
 */
