@@ -20,9 +20,9 @@ unsigned int lcm(unsigned int a, unsigned int b)
 	total = (a * b) / pgcd(a,b);
 	return total;
 }
-
+/*
 int main()
 {
 	printf("%d",lcm(-4,2932));
 }
-
+*/
