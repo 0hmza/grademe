@@ -9,6 +9,9 @@ int check(char c)
 void display(char *s)
 {
 	int i = 0;
+
+	while (check(s[i]))
+		i++;
 	while (s[i])
 	{
 		if (check(s[i]) == 1)
