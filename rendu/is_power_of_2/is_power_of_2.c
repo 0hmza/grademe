@@ -4,6 +4,8 @@
 int is_power_of_2(unsigned int n)
 {
 	unsigned int i = 0;
+	if (n == 0)
+		return 0;
 	while (i <= n)
 	{
 		if (i * i == n)
