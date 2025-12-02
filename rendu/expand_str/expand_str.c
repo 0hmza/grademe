@@ -20,7 +20,7 @@ void display(char *s)
 			while (check(s[i]) == 1)
 				i++;
 			int end = i;
-			while (start < end)
+			while (start < end && s[end] != '\0')
 			{
 				write(1,"   ",3);
 				break;
