@@ -19,13 +19,11 @@ void display(char *s)
 		else
 		{
 			write(1,&s[i],1);
-			j = 1;
 		}
 
 		while(count)
 		{
 			write(1,&s[i],1);
-			j = 1;
 			count--;
 		}
 	i++;
