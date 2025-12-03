@@ -1,26 +1,36 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
-
-int pgcd(unsigned int num1,unsigned int num2)
+#include <stdio.h>
+#include <stdlib.h>
+int pgcd(unsigned num, unsigned int num1)
 {
-		int i = num1;
-		while (i > 0)
-		{
-			if ((num1 % i == 0) && (num2 % i == 0))
-				return i;
-			i--;
-		}
-		return 1;
+	unsigned int i;
+
+	i  = num;
+	while (num > 0)
+	{
+		if ((num % i == 0) && (num1 % i == 0))
+			return i;
+		i--;
+	}
+	return 0;
 }
+
 int main(int ac,char **av)
 {
-	if (ac == 3)
+	if ( ac == 3)
 	{
-		printf("%d",pgcd(atoi(av[1]),atoi(av[2])));
-		printf("\n");
+		int num = atoi(av[1]);
+		int num1 = atoi(av[2]);
+		if (num < 0 || num1 < 0)
+			printf("0");
+		else
+		{
+			printf("%d",pgcd(atoi(av[1]),atoi(av[2])));
+			printf("\n");
+		}
 	}
 	else
 		printf("\n");
+		return 0;
 }
 
