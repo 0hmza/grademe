@@ -1,46 +1,43 @@
-
-#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
-
-void fprime(unsigned int n)
+#include <stdio.h>
+void prim(unsigned int num)
 {
-	unsigned int prime;
-
-	if(n == 1)
-		printf("1");
-	else
-	{
-		prime = 2;
-		while (n > 1)
+		unsigned int i;
+		if (num == 1)
+			printf("1");
+		else
 		{
-			if (n % prime == 0)
+			int i = 2;
+			while (num > 1)
 			{
-				printf("%d",prime);
-				n /= prime;
-				if(n > 1)
-					printf("*");
+				if (num % i == 0)
+				{
+					printf("%d",i);
+					num /= i;
+					if(num > 1)
+						printf("*");
+				}
+				else
+					i++;
 			}
-			else
-				prime++;
 		}
-	}
 }
 int main(int ac,char **av)
 {
 	if (ac == 2)
 	{
 		int num = atoi(av[1]);
+		int i = 0;
 		if (num < 0)
 		{
 			printf("\n");
 			return 0;
 		}
 		else
-			fprime((unsigned int)num);
+			prim((unsigned int)num);
 			printf("\n");
 	}
 	else
 		printf("\n");
-	return 0;
 }
-
