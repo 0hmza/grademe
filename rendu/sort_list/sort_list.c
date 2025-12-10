@@ -1,21 +1,21 @@
 #include "list.h"
 
-void ft_swap(int *a,int *b)
+void ft_swap(int *a,int*b)
 {
 	int temp;
 	temp = *a;
 	*a = *b;
 	*b = temp;
 }
-t_list	*sort_list(t_list* lst, int (*cmp)(int,int))
-{
-	t_list *begin;
-	t_list *p;
+t_list	*sort_list(t_list* lst,int (*cmp)(int,int))
+{	
+	t_list *h;
+	t_list	*p;
 
-	begin = lst;
+	h = lst;
 	while (lst)
 	{
-		p = lst->next;
+		p = p->next;
 		while (p)
 		{
 			if (!(*cmp)(lst->data,p->data))
@@ -26,6 +26,5 @@ t_list	*sort_list(t_list* lst, int (*cmp)(int,int))
 		}
 		lst = lst->next;
 	}
-	return begin;
+	return (h);
 }
-
