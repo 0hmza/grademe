@@ -1,38 +1,37 @@
 #include <unistd.h>
 
-int main(int ac,char **av)
+int	already_printed(char *s, int j)
+{
+	int i = 0;
+	while (i < j)
+	{
+		if (s[i] == s[j])
+			return 1;
+		i++;
+	}
+	return (0);
+}
+int exist(char c, char *s)
+{
+
+	int i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return 1;
+		i++;
+	}
+	return (0);
+}
+int main(int ac, char **av)
 {
 	if (ac == 3)
 	{
-		int i = 0;
-		int j = 0;
-
+		int i =0;
 		while (av[1][i])
 		{
-			int k = 0;
-			int dup = 0;
-			while (k < i)
-			{
-				if (av[1][k] == av[1][i])
-				{
-					dup = 1;
-					break;
-				}
-				k++;
-			}
-			if (!dup)
-			{
-				j = 0;
-				while (av[2][j])
-				{
-					if (av[1][i] == av[2][j])
-					{
-						write(1,&av[1][i],1);
-						break;
-					}
-					j++;
-				}
-			}
+			if (!already_printed(av[1],i) && exist(av[1][i],av[2]))
+				write(1,&av[1][i],1);
 			i++;
 		}
 		write(1,"\n",1);
@@ -40,4 +39,3 @@ int main(int ac,char **av)
 	else
 		write(1,"\n",1);
 }
-
