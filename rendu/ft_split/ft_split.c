@@ -1,15 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
-
 char **ft_split(char *str)
 {
-	int i =0,j = 0,k = 0;
+	int i =0, j= 0, k =0;
 	char **box = malloc(sizeof(char *) * 2096);
 	if (!box)
 		return NULL;
 	while (str[i])
 	{
-		while (str[i] && str[i] <= 32)
+		while(str[i] && str[i] <= 32)
 			i++;
 		if (!str[i])
 			break;
@@ -23,19 +22,17 @@ char **ft_split(char *str)
 		j++;
 	}
 	box[j] = NULL;
-	return box;
+	return (box);
 }
 /*
 int main()
 {
-	char **p = ft_split("hi  ha        mza");
-	int i  =0;
-	while (p[i])
+	char **re = ft_split("hello ahmed how are u");
+	int i = 0;
+	while (re[i])
 	{
-		printf("mot %d : '%s' \n",i,p[i]);
-		free(p[i]);
+		printf("mot : %s\n",re[i]);
 		i++;
 	}
-	free(p);
 }
 */
