@@ -10,7 +10,7 @@ void display(char *s)
 			s[i] = s[i] + 1;
 			write(1,&s[i],1);
 		}
-		else if (s[i] >= 'A' && s[i] <= 'Z')
+		else if (s[i] >= 'A' && s[i] <= 'Y')
 		{
 			s[i] = s[i] + 1;
 			write(1,&s[i],1);
