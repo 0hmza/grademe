@@ -34,7 +34,7 @@ int ft_strlen(char *s)
 }
 int main(int ac, char **av)
 {
-	if (ac > 2)
+	if (ac >= 2)
 	{
 		char **r = ft_split(av[1]);
 		int i = 1;
