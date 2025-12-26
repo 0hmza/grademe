@@ -1,38 +1,51 @@
 #include <unistd.h>
 
-int check(char c)
+int f(char c)
 {
 	if (c == ' ' || c == '\t')
 		return 1;
 	return 0;
 }
+void display(char *s)
+{
+	int i = 0;
+	while (s[i])
+	{
+		if (f(s[i + 1]) == 1 || s[i + 1] == '\0')
+		{
+			if (s[i] >= 'A' && s[i] <= 'Z')
+				write(1,&s[i],1);
+			else if (s[i] >= 'a' && s[i] <= 'z')
+			{
+				s[i] = s[i] - 32;
+				write(1,&s[i],1);
+			}
+			else 
+				write(1,&s[i],1);
+
+		}
+		else if (s[i] >= 'A' && s[i] <= 'Z')
+		{
+			s[i] += 32;
+			write(1,&s[i],1);
+		}
+		else
+			write(1,&s[i],1);
+		i++;
+	}
+	write(1,"\n",1);
+}
 int main(int ac,char **av)
 {
 	if (ac > 1)
 	{
-		int i = 0;
-		int j = 1;
-		while (j < ac)
+		int i = 1;
+		while (i < ac)
 		{
-			i  = 0;
-			while (av[j][i])
-			{
-				if (av[j][i] >= 'A' && av[j][i] <= 'Z')
-				{
-					av[j][i] += 32;
-				}
-				if (check(av[j][i + 1]) == 1 || av[j][i + 1] == '\0')
-				{
-					if (av[j][i] >= 'a' && av[j][i] <= 'z')
-						av[j][i] -=32;
-				}
-				write(1,&av[j][i],1);
-				i++;
-			}
-			write(1,"\n",1);
-			j++;
+			display(av[i]);
+			i++;
 		}
 	}
 	else
-		write (1,"\n",1);
+		write(1,"\n",1);
 }
