@@ -1,46 +1,55 @@
 #include <unistd.h>
-
-int check(char c)
-{
-	if (c == ' ' ||c == '\t')
-		return 1;
-	return 0;
-}
-void display(char *s)
+#include <stdlib.h>
+int ft_strlen(char *s)
 {
 	int i = 0;
-	int start,end;
 	while (s[i])
-		i++; // go to end of string
-	i--;//last char
-	while (i >= 0)
+		i++;
+	return i;
+}
+char **fsplit(char *s)
+{
+	int i = 0,j = 0, k = 0;
+	char **box = malloc(sizeof(char *) * 2096);
+	if (!box)
+		return NULL;
+	while (s[i])
 	{
-		//skip spaces going backwords
-		while (i >= 0 && (check(s[i]) == 1))
-			i--;
-		if (i < 0)
+		while (s[i] && s[i] <= 32)
+			i++;
+		if (!s[i])
 			break;
-		end = i + 1;
-		//find start of word
-		while (i >= 0 && check(s[i]) != 1)
-			i--;
-		start = i + 1;
-		while (start < end)
-		{
-			write(1,&s[start],1);
-			start++;
-		}
-		if (i >= 0)
-			write(1," ",1);//print a space if another word exists
+		box[j] = malloc(4096);
+		if (!box[j])
+			return NULL;
+		k = 0;
+		while (s[i] && s[i] > 32)
+			box[j][k++] = s[i++];
+		box[j][k] = '\0';
+		j++;
 	}
+	box[j] = NULL;
+	return box;
 }
 int main(int ac,char **av)
 {
-	if (ac == 2)
+	if (ac > 1)
 	{
-		display(av[1]);
+		char **re = fsplit(av[1]);
+		int i = 0;
+		while (re[i])
+			i++;
+		i--;
+		while (i >= 0)
+		{
+			write(1,re[i], ft_strlen(re[i]));
+			if (i > 0)
+				write(1," ",1);
+			i--;
+		}
 		write(1,"\n",1);
 	}
 	else
 		write(1,"\n",1);
 }
+
